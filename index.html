@@ -6,8 +6,6 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript">
     var zaius = window['zaius']||(window['zaius']=[]);zaius.methods=["initialize","onload","event","entity","identify","anonymize","dispatch"];zaius.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);zaius.push(t);return zaius}};for(var i=0;i<zaius.methods.length;i++){var method=zaius.methods[i];zaius[method]=zaius.factory(method)}(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src=("https:"===document.location.protocol?"https://":"http://")+"d1igp3oop3iho5.cloudfront.net/v2/inSGERO--NUg190kAWr4Qw/zaius-min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
-</script>
-<script type="text/javascript">
 
     var email='';
 
@@ -142,8 +140,8 @@
 
     function submitPreferences(){
 
-        let subArray = [];
-        let unsubArray = [];
+        var subArray = [];
+        var unsubArray = [];
 
         $("input:checkbox").each(function(){
             if(this.checked){
@@ -151,25 +149,20 @@
             } else {
                 unsubArray.push(this.id);
             }
-        })
+        });
 
-        zaius.subscribe({email: email, list_id: subArray })
+        // zaius.event('pageview');
+
+        zaius.subscribe({email: email, list_id: subArray });
         zaius.unsubscribe({email: email, list_id: unsubArray});
-
-        return false;
-
 
 
     }
 
-    $('document').ready(function(){
+    $(document).ready(function(){
+
         populatePage();
 
-
-        $('#preference_center').submit(function(){
-            submitPreferences();
-            return false;
-        })
 
     });
 </script>
@@ -185,7 +178,7 @@
     <title>Title</title>
 </head>
 <body>
-<form id="preference_center" onsubmit="submitPreferences()">
+<form id="preference_center" onSubmit="submitPreferences(); return false">
     <div class="checkboxes">Special Offers<input title="special_offers" type="checkbox"  id="special_offers"></div>
     <div class="checkboxes">Free Shipping<input title="free_shipping" type="checkbox"  id="free_shipping"></div>
     <div class="checkboxes">Discount Offers<input title="discount_offers" type="checkbox"  id="discount_offers"></div>
@@ -210,7 +203,7 @@
     <div class="checkboxes">Cabernet<input title="cabernet" type="checkbox"  id="cabernet"></div>
     <div class="checkboxes">Zinfandel & Syrrah<input title="zinfandel_syrrah" type="checkbox"  id="zinfandel_syrrah"></div>
     <div class="checkboxes">Southern Hemisphere<input title="southern_hemisphere" type="checkbox"  id="southern_hemisphere"></div>
-    <input type="submit">
+    <input id='submit-form' type="submit" value="Submit">
 </form>
 </body>
 </html>
